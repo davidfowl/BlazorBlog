@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+
+name: MyBlog
+services:  
+  app:
+    project: MyBlog.AppHost\MyBlog.AppHost.csproj
+    language: dotnet
+    host: aspire
