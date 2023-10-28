@@ -1,0 +1,15 @@
+﻿@page "/post/{id:int}"
+@inject AppDbContext Db
+
+<h3></h3>
+
+@if (Post is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <h1>@Post.Title</h1>
+
+    <p>@Post.Content</p>
+}

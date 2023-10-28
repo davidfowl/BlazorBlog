@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting" Version="8.0.0-preview.2.23525.4" />
+    <PackageReference Include="Aspire.Hosting" Version="8.0.0-preview.2.23528.1" />
   </ItemGroup>
 
   <ItemGroup>

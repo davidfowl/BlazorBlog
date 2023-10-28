@@ -1,0 +1,43 @@
+﻿@page "/posts"
+@attribute [StreamRendering(true)]
+@inject AppDbContext Db
+
+<PageTitle>Posts</PageTitle>
+
+<h1>Posts</h1>
+
+@if (posts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Created</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in posts)
+            {
+                <tr>
+                    <td>@p.Title</td>
+                    <td>@p.Created</td>
+                    <td><a href="/post/@p.Id">View</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Post[]? posts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        posts = await Db.Posts.ToArrayAsync();
+    }
+}

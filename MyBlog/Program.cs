@@ -1,8 +1,12 @@
 using MyBlog.Components;
+using MyBlog.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
+
+builder.AddNpgsqlDbContext<AppDbContext>("db");
+builder.Services.AddMigration<AppDbContext>();
 
 // Add services to the container.
 builder.Services.AddRazorComponents();
