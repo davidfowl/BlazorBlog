@@ -11,7 +11,6 @@ public partial class PostDetails
 
     protected override async Task OnInitializedAsync()
     {
-        Post = await Db.Posts.FindAsync(Id);
+        Post = await Client.GetPostAsync(Id);
     }
-
 }

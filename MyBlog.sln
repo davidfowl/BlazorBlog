@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBlog.ServiceDefaults", "M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBlog", "MyBlog\MyBlog.csproj", "{B4996B37-366A-4B07-BBD8-508578DD5CE8}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBlog.Api", "MyBlog.Api\MyBlog.Api.csproj", "{CB33D2D2-6628-4D9E-9CA7-D9B702735AF3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B4996B37-366A-4B07-BBD8-508578DD5CE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4996B37-366A-4B07-BBD8-508578DD5CE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4996B37-366A-4B07-BBD8-508578DD5CE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB33D2D2-6628-4D9E-9CA7-D9B702735AF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB33D2D2-6628-4D9E-9CA7-D9B702735AF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB33D2D2-6628-4D9E-9CA7-D9B702735AF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB33D2D2-6628-4D9E-9CA7-D9B702735AF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

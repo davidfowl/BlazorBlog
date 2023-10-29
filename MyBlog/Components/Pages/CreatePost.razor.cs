@@ -21,14 +21,7 @@ public partial class CreatePost
     {
         if (editContext.Validate())
         {
-            Db.Posts.Add(new Post
-            {
-                Title = Post.Title,
-                Content = Post.Content,
-                Created = DateTime.UtcNow
-            });
-
-            await Db.SaveChangesAsync();
+            await Client.CreatePostAsync(Post.Title, Post.Content);
 
             Nav.NavigateTo("/posts");
         }

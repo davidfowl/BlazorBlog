@@ -1,12 +1,12 @@
 using MyBlog.Components;
-using MyBlog.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
-
-builder.AddNpgsqlDbContext<AppDbContext>("db");
-builder.Services.AddMigration<AppDbContext>();
+builder.Services.AddHttpClient<BlogApiClient>(c =>
+{
+    c.BaseAddress = new("https://myblogapi");
+});
 
 // Add services to the container.
 builder.Services.AddRazorComponents();

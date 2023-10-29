@@ -8,16 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0-preview.2.23528.1" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MyBlog.ServiceDefaults\MyBlog.ServiceDefaults.csproj" />
   </ItemGroup>
 
 	<ItemGroup>
-		<Using Include="Microsoft.EntityFrameworkCore" />
-		<Using Include="MyBlog.Data" />
+		<Using Include="MyBlog.Model" />
 		<Using Include="MyBlog" />
 	</ItemGroup>
 

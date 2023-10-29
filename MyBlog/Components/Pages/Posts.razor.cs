@@ -11,13 +11,16 @@ public partial class Posts
 
     protected override async Task OnInitializedAsync()
     {
-        posts = await Db.Posts.ToArrayAsync();
+        posts = await Client.GetPostsAsync();
     }
 
     async Task DeletePost()
     {
-        await Db.Posts.Where(p => p.Id == PostId).ExecuteDeleteAsync();
+        if (PostId is int id)
+        {
+            await Client.DeletePostAsync(id);
 
-        Nav.NavigateTo("/posts");
+            Nav.NavigateTo("/posts");
+        }
     }
 }

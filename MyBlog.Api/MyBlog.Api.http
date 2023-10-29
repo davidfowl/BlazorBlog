@@ -1,0 +1,6 @@
+@MyBlog.Api_HostAddress = http://localhost:5158
+
+GET {{MyBlog.Api_HostAddress}}/
+Accept: application/json
+
+###

@@ -12,7 +12,7 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
 
     <PackageReference Include="Microsoft.Extensions.Http.Resilience" Version="8.0.0-rtm.23524.3" />
-    <PackageReference Include="Microsoft.Extensions.ServiceDiscovery" Version="8.0.0-preview.2.23525.4" />
+    <PackageReference Include="Microsoft.Extensions.ServiceDiscovery" Version="8.0.0-preview.2.23528.2" />
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.7.0-alpha.1" />
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.7.0-alpha.1" />
     <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.5.1-beta.1" />
