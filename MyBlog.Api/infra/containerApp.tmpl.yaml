@@ -9,7 +9,7 @@ properties:
   configuration:
     activeRevisionsMode: single
     ingress:
-      external: true
+      external: false
       targetPort: 8080
       transport: http
       allowInsecure: false
@@ -18,18 +18,17 @@ properties:
       identity: {{ .Env.AZURE_CONTAINER_REGISTRY_MANAGED_IDENTITY_ID }}
   template:
     containers:
-    - image: {{ .Env.SERVICE_MYBLOG_IMAGE_NAME }}
-      name: myblog
+    - image: {{ .Env.SERVICE_MYBLOGAPI_IMAGE_NAME }}
+      name: myblogapi
       env:
-      - name: ASPNETCORE_FORWARDEDHEADERS_ENABLED
-        value: "true"
+      - name: ConnectionStrings__db
+        value: {{ .Env.SERVICE_BINDING_DB_CONNECTION_STRING }}
       - name: OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES
         value: "true"
       - name: OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES
         value: "true"
-      - name: services__myblogapi__0
-        value: http://myblogapi.internal.{{ .Env.AZURE_CONTAINER_APPS_ENVIRONMENT_DEFAULT_DOMAIN }}
-      - name: services__myblogapi__1
-        value: https://myblogapi.internal.{{ .Env.AZURE_CONTAINER_APPS_ENVIRONMENT_DEFAULT_DOMAIN }}
+    serviceBinds:
+      - name: db
+        serviceId: {{ .Env.SERVICE_BINDING_DB_ID }}
 tags:
-  azd-service-name: myblog
+  azd-service-name: myblogapi
