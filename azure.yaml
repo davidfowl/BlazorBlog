@@ -6,3 +6,11 @@ services:
     project: MyBlog.AppHost\MyBlog.AppHost.csproj
     language: dotnet
     host: aspire
+hooks:
+  postprovision:
+    posix:
+      run: ./scripts/write-binding-to-azd-env.sh
+      interactive: true
+    windows:
+      run: ./scripts/write-binding-to-azd-env.ps1
+      interactive: true

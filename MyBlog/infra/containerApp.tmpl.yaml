@@ -21,9 +21,14 @@ properties:
     - image: {{ .Env.SERVICE_MYBLOG_IMAGE_NAME }}
       name: myblog
       env:
+      - name: ConnectionStrings__db
+        value: {{ .Env.SERVICE_BINDING_DB_CONNECTION_STRING }}
       - name: OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES
         value: "true"
       - name: OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES
         value: "true"
+    serviceBinds:
+      - name: db
+        serviceId: {{ .Env.SERVICE_BINDING_DB_ID }}
 tags:
   azd-service-name: myblog
