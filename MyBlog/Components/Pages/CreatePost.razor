@@ -7,23 +7,26 @@
 
 <EditForm EditContext="@editContext" FormName="createpost" OnSubmit="@HandleSubmitAsync" Enhance>
     <DataAnnotationsValidator />
-    <div class="form-group">
-        <label for="title">Title</label>
-        <InputText id="title" class="form-control" @bind-Value="@Post.Title" />
-        <ValidationMessage For="@(() => Post.Title)" />
-    </div>
+    <ValidationSummary />
+    <div class="form">
+        <div class="form-section">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <InputText id="title" class="form-control" @bind-Value="@Post.Title" />
+                <ValidationMessage For="@(() => Post.Title)" />
+            </div>
 
-    <div class="form-group">
-        <label for="content">Content</label>
-        <InputTextArea id="content" class="form-control" @bind-Value="@Post.Content" />
-        <ValidationMessage For="@(() => Post.Content)" />
-    </div>
+            <div class="form-group">
+                <label for="content">Content</label>
+                <InputTextArea id="content" class="form-control" @bind-Value="@Post.Content" />
+                <ValidationMessage For="@(() => Post.Content)" />
+            </div>
+        </div>
 
-    <div class="form-section">
-        <div class="form-buttons">
-            <button class="button button-primary" type="submit">Create Post</button>
+        <div class="form-section">
+            <div class="form-buttons">
+                <button class="button button-primary" type="submit">Create Post</button>
+            </div>
         </div>
     </div>
-
-    <ValidationSummary />
 </EditForm>

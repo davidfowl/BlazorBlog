@@ -1,5 +1,6 @@
 ﻿@page "/posts"
 @attribute [StreamRendering(true)]
+@inject NavigationManager Nav
 @inject AppDbContext Db
 
 <PageTitle>Posts</PageTitle>
@@ -12,32 +13,31 @@
 }
 else
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Created</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var p in posts)
-            {
+    <form method="post" @formname="delete-post" onsubmit="@(() => DeletePost())">
+        <AntiforgeryToken />
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>@p.Title</td>
-                    <td>@p.Created</td>
-                    <td><a href="/post/@p.Id">View</a></td>
+                    <th>Title</th>
+                    <th>Created</th>
+                    <th></th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
-}
-
-@code {
-    private Post[]? posts;
-
-    protected override async Task OnInitializedAsync()
-    {
-        posts = await Db.Posts.ToArrayAsync();
-    }
+            </thead>
+            <tbody>
+                @foreach (var p in posts)
+                {
+                    <tr>
+                        <td>@p.Title</td>
+                        <td>@p.Created</td>
+                        <td><a href="/post/@p.Id">View</a></td>
+                        <td>
+                            <input type="hidden" value="@p.Id" name="PostId" />
+                            <input type="submit" value="Delete" />
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </form>
 }

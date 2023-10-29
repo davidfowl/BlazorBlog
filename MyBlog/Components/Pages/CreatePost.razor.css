@@ -1,0 +1,24 @@
+﻿
+
+.form-group {
+    align-items: flex-start;
+    gap: 1.5rem;
+    align-self: stretch;
+}
+
+    .form-group .form-group-item {
+        flex: 1 0 0;
+    }
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+    .form .form-section {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        align-self: stretch;
+    }
