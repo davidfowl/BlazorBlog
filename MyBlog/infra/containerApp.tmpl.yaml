@@ -21,6 +21,8 @@ properties:
     - image: {{ .Env.SERVICE_MYBLOG_IMAGE_NAME }}
       name: myblog
       env:
+      - name: ASPNETCORE_FORWARDEDHEADERS_ENABLED
+        value: "true"
       - name: ConnectionStrings__db
         value: {{ .Env.SERVICE_BINDING_DB_CONNECTION_STRING }}
       - name: OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES
