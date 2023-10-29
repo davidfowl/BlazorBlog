@@ -8,6 +8,8 @@ builder.Services.AddHttpClient<BlogApiClient>(c =>
     c.BaseAddress = new("https://myblogapi");
 });
 
+builder.AddStorageBasedDataProtection();
+
 // Add services to the container.
 builder.Services.AddRazorComponents();
 
