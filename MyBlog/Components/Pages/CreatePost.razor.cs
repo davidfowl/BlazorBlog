@@ -21,7 +21,7 @@ public partial class CreatePost
     {
         if (editContext.Validate())
         {
-            Db.Posts.Add(new Data.Post
+            Db.Posts.Add(new Post
             {
                 Title = Post.Title,
                 Content = Post.Content,
