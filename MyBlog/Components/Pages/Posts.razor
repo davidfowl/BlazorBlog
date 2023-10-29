@@ -32,8 +32,7 @@ else
                         <td>@p.Created</td>
                         <td><a href="/post/@p.Id">View</a></td>
                         <td>
-                            <input type="hidden" value="@p.Id" name="PostId" />
-                            <input type="submit" value="Delete" />
+                            <button type="submit" name="PostId" value="@p.Id">Delete</button>
                         </td>
                     </tr>
                 }
