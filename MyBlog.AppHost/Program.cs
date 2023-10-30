@@ -7,11 +7,13 @@ var blobs = builder.AddAzureStorage("storage")
                    .AddBlobs("blobs");
 
 var api = builder.AddProject<Projects.MyBlog_Api>("myblogapi")
-                 .WithReference(db);
+                 .WithReference(db)
+                 .WithLaunchProfile("https");
 
 builder.AddProject<Projects.MyBlog>("myblog")
        .WithReference(api)
        .WithReference(blobs)
-       .WithEnvironment("ASPNETCORE_FORWARDEDHEADERS_ENABLED", "true");
+       .WithEnvironment("ASPNETCORE_FORWARDEDHEADERS_ENABLED", "true")
+       .WithLaunchProfile("https");
 
 builder.Build().Run();
