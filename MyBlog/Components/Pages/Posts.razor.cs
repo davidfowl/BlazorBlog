@@ -1,26 +1,18 @@
-using Microsoft.AspNetCore.Components;
-
 namespace MyBlog.Components.Pages;
 
 public partial class Posts
 {
     private Post[]? posts;
 
-    [SupplyParameterFromForm]
-    public int? PostId { get; set; }
-
     protected override async Task OnInitializedAsync()
     {
         posts = await Client.GetPostsAsync();
     }
 
-    async Task DeletePost()
+    async Task DeletePost(int id)
     {
-        if (PostId is int id)
-        {
-            await Client.DeletePostAsync(id);
+        await Client.DeletePostAsync(id);
 
-            Nav.NavigateTo("/posts");
-        }
+        Nav.NavigateTo("/posts");
     }
 }
