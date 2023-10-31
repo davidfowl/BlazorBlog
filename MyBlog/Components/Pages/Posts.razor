@@ -7,36 +7,37 @@
 
 <h1>Posts</h1>
 
-@if (posts is null)
-{
-    <p><em>Loading...</em></p>
-    return;
-}
+<form method="post" @formname="blog-post-actions" data-enhance>
+    <AntiforgeryToken />
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Created</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var p in posts)
-        {
-            <tr>
-                <td>@p.Title</td>
-                <td>@p.Created</td>
-                <td><a href="/post/@p.Id">View</a></td>
-                <td>
-                    <form method="post" @formname="@($"post-{p.Id}")" onsubmit="@(() => DeletePost(p.Id))">
-                        <AntiforgeryToken />
-                        <button type="submit">Delete</button>
-                    </form>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
+    @if (posts is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Created</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in posts)
+                {
+                    <tr>
+                        <td>@p.Title</td>
+                        <td>@p.Created</td>
+                        <td><a href="/post/@p.Id">View</a></td>
+                        <td>
+                            <button type="submit" name="@nameof(PostToDelete)" value="@p.Id">Delete</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</form>
