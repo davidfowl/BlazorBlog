@@ -14,8 +14,6 @@ public partial class Posts
         if (PostToDelete.HasValue)
         {
             await Client.DeletePostAsync(PostToDelete.Value);
-            Nav.NavigateTo("/posts");
-            return;
         }
 
         posts = await Client.GetPostsAsync();
