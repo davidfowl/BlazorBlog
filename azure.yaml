@@ -3,9 +3,9 @@
 name: MyBlog
 services:  
   app:
-    project: MyBlog.AppHost\MyBlog.AppHost.csproj
     language: dotnet
-    host: aspire
+    project: .\MyBlog.AppHost\MyBlog.AppHost.csproj
+    host: containerapp
 hooks:
   postprovision:
     posix:
