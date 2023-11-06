@@ -5,6 +5,12 @@ public static class Extensions
 {
     public static void AddStorageBasedDataProtection(this IHostApplicationBuilder builder)
     {
+        // Make this optional
+        if (builder.Configuration.GetConnectionString("blobs") is null)
+        {
+            return;
+        }
+
         builder.AddAzureBlobService("blobs");
 
         builder.Services.AddDataProtection()
