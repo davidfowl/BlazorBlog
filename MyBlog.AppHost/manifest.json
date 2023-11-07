@@ -1,0 +1,68 @@
+{
+  "resources": {
+    "pg": {
+      "type": "postgres.server.v1"
+    },
+    "db": {
+      "type": "postgres.database.v1",
+      "parent": "pg"
+    },
+    "storage": {
+      "type": "azure.storage.v1"
+    },
+    "blobs": {
+      "type": "azure.storage.blob.v1",
+      "parent": "storage"
+    },
+    "vault": {
+      "type": "azure.keyvault.v1"
+    },
+    "myblogapi": {
+      "type": "project.v1",
+      "path": "..\\MyBlog.Api\\MyBlog.Api.csproj",
+      "env": {
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES": "true",
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES": "true",
+        "ConnectionStrings__db": "{db.connectionString}",
+        "ConnectionStrings__vault": "{vault.connectionString}"
+      },
+      "bindings": {
+        "http": {
+          "scheme": "http",
+          "protocol": "tcp",
+          "transport": "http"
+        },
+        "https": {
+          "scheme": "https",
+          "protocol": "tcp",
+          "transport": "http"
+        }
+      }
+    },
+    "myblog": {
+      "type": "project.v1",
+      "path": "..\\MyBlog\\MyBlog.csproj",
+      "env": {
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES": "true",
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES": "true",
+        "ConnectionStrings__vault": "{vault.connectionString}",
+        "ConnectionStrings__blobs": "{blobs.connectionString}",
+        "ASPNETCORE_FORWARDEDHEADERS_ENABLED": "true",
+        "services__myblogapi__0": "{myblogapi.bindings.http.url}",
+        "services__myblogapi__1": "{myblogapi.bindings.https.url}"
+      },
+      "bindings": {
+        "http": {
+          "scheme": "http",
+          "protocol": "tcp",
+          "transport": "http"
+        },
+        "https": {
+          "scheme": "https",
+          "protocol": "tcp",
+          "transport": "http"
+        }
+      }
+    }
+  }
+}
