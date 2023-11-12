@@ -1,4 +1,5 @@
-﻿using Azure.Storage.Blobs;
+﻿using Azure.Identity;
+using Azure.Storage.Blobs;
 using Microsoft.AspNetCore.DataProtection;
 
 public static class Extensions
@@ -11,9 +12,13 @@ public static class Extensions
             return;
         }
 
+        var keyVaultUri = builder.Configuration.GetConnectionString("vault") is string keyVaultConnectionString
+            ? new Uri(keyVaultConnectionString)
+            : null;
+
         builder.AddAzureBlobService("blobs");
 
-        builder.Services.AddDataProtection()
+        var dpBuilder = builder.Services.AddDataProtection()
             .PersistKeysToAzureBlobStorage(sp =>
             {
                 var containerClient = sp.GetRequiredService<BlobServiceClient>().GetBlobContainerClient("container");
@@ -22,5 +27,9 @@ public static class Extensions
                 return blobClient;
             });
 
+        if (keyVaultUri is not null)
+        {
+            dpBuilder.ProtectKeysWithAzureKeyVault(keyVaultUri, new DefaultAzureCredential());
+        }
     }
 }
