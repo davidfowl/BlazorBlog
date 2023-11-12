@@ -1,24 +1,24 @@
 {
   "resources": {
     "pg": {
-      "type": "postgres.server.v1"
+      "type": "postgres.server.v0"
     },
     "db": {
-      "type": "postgres.database.v1",
+      "type": "postgres.database.v0",
       "parent": "pg"
     },
     "storage": {
-      "type": "azure.storage.v1"
+      "type": "azure.storage.v0"
     },
     "blobs": {
-      "type": "azure.storage.blob.v1",
+      "type": "azure.storage.blob.v0",
       "parent": "storage"
     },
     "vault": {
-      "type": "azure.keyvault.v1"
+      "type": "azure.keyvault.v0"
     },
     "myblogapi": {
-      "type": "project.v1",
+      "type": "project.v0",
       "path": "..\\MyBlog.Api\\MyBlog.Api.csproj",
       "env": {
         "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES": "true",
@@ -40,7 +40,7 @@
       }
     },
     "myblog": {
-      "type": "project.v1",
+      "type": "project.v0",
       "path": "..\\MyBlog\\MyBlog.csproj",
       "env": {
         "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES": "true",
