@@ -8,18 +8,11 @@ var blobs = builder.AddAzureStorage("storage")
                    .UseEmulator()
                    .AddBlobs("blobs");
 
-var kv = builder.AddAzureKeyVault("vault");
-
 var api = builder.AddProject<Projects.MyBlog_Api>("myblogapi")
-                 .WithReference(db)
-                 .WithReference(kv)
-                 .WithLaunchProfile("https");
+                 .WithReference(db);
 
 builder.AddProject<Projects.MyBlog>("myblog")
        .WithReference(api)
-       .WithReference(kv)
-       .WithReference(blobs)
-       .WithEnvironment("ASPNETCORE_FORWARDEDHEADERS_ENABLED", "true")
-       .WithLaunchProfile("https");
+       .WithReference(blobs);
 
 builder.Build().Run();

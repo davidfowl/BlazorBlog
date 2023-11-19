@@ -13,9 +13,6 @@ public static class Extensions
 {
     public static IHostApplicationBuilder AddServiceDefaults(this IHostApplicationBuilder builder)
     {
-        // Everyone gets keyvault!
-        builder.Configuration.AddKeyVaultSecrets("vault");
-
         builder.ConfigureOpenTelemetry();
 
         builder.AddDefaultHealthChecks();

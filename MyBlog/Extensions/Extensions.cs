@@ -12,9 +12,10 @@ public static class Extensions
             return;
         }
 
-        var keyVaultUri = builder.Configuration.GetConnectionString("vault") is string keyVaultConnectionString
-            ? new Uri(keyVaultConnectionString)
-            : null;
+        // TODO: We need to support creating a key in the app model to make this work seamlessly
+        //var keyVaultUri = builder.Configuration.GetConnectionString("vault") is string keyVaultConnectionString
+        //    ? new Uri(keyVaultConnectionString)
+        //    : null;
 
         builder.AddAzureBlobService("blobs");
 
@@ -27,9 +28,10 @@ public static class Extensions
                 return blobClient;
             });
 
-        if (keyVaultUri is not null)
-        {
-            dpBuilder.ProtectKeysWithAzureKeyVault(keyVaultUri, new DefaultAzureCredential());
-        }
+        // TODO: We need to support creating a key in the app model to make this work seamlessly
+        //if (keyVaultUri is not null)
+        //{
+        //    dpBuilder.ProtectKeysWithAzureKeyVault(keyVaultUri, new DefaultAzureCredential());
+        //}
     }
 }
