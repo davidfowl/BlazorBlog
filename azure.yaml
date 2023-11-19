@@ -6,11 +6,4 @@ services:
     language: dotnet
     project: .\MyBlog.AppHost\MyBlog.AppHost.csproj
     host: containerapp
-hooks:
-  postprovision:
-    posix:
-      run: ./scripts/write-binding-to-azd-env.sh
-      interactive: true
-    windows:
-      run: ./scripts/write-binding-to-azd-env.ps1
-      interactive: true
+

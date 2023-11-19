@@ -6,11 +6,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsAspireHost>true</IsAspireHost>
+    <UserSecretsId>61c5cc4a-84be-4d64-9521-c196b658ad19</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-	  <PackageReference Include="Aspire.Hosting" Version="8.0.0-preview.1.23551.7" />
-	  <PackageReference Include="Aspire.Hosting.Azure" Version="8.0.0-preview.1.23551.7" />
+	  <PackageReference Include="Aspire.Hosting" Version="8.0.0-preview.1.23557.2" />
+	  <PackageReference Include="Aspire.Hosting.Azure.Provisioning" Version="8.0.0-preview.1.23557.2" />
   </ItemGroup>
 
   <ItemGroup>

@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
 builder.Services.AddHttpClient<BlogApiClient>(c =>
 {
-    c.BaseAddress = new("https://myblogapi");
+    c.BaseAddress = new("http://myblogapi");
 });
 
 builder.AddStorageBasedDataProtection();
@@ -24,8 +24,6 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
-app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 app.UseAntiforgery();
