@@ -42,6 +42,7 @@
         "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES": "true",
         "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES": "true",
         "ConnectionStrings__blobs": "{blobs.connectionString}",
+        "ASPNETCORE_FORWARDEDHEADERS_ENABLED": "true",
         "services__myblogapi__0": "{myblogapi.bindings.http.url}",
         "services__myblogapi__1": "{myblogapi.bindings.https.url}"
       },

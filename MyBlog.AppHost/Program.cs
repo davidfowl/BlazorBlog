@@ -2,10 +2,9 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 builder.AddAzureProvisioning();
 
-var db = builder.AddPostgresContainer("pg").AddDatabase("db");
+var db = builder.AddPostgres("pg").AddDatabase("db");
 
 var blobs = builder.AddAzureStorage("storage")
-                   .UseEmulator()
                    .AddBlobs("blobs");
 
 var api = builder.AddProject<Projects.MyBlog_Api>("myblogapi")
@@ -13,5 +12,7 @@ var api = builder.AddProject<Projects.MyBlog_Api>("myblogapi")
 
 builder.AddProject<Projects.MyBlog>("myblog")
        .WithReference(api)
-       .WithReference(blobs)       .WithEnvironment("ASPNETCORE_FORWARDEDHEADERS_ENABLED", "true");;
+       .WithReference(blobs)
+       .WithEnvironment("ASPNETCORE_FORWARDEDHEADERS_ENABLED", "true");
+;
 builder.Build().Run();
