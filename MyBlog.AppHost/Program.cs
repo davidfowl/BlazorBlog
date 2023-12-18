@@ -1,10 +1,8 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
-builder.AddAzureProvisioning();
-
 var db = builder.AddPostgres("pg").AddDatabase("db");
 
-var blobs = builder.AddAzureStorage("storage")
+var blobs = builder.AddAzureStorage("storage").UseEmulator()
                    .AddBlobs("blobs");
 
 var api = builder.AddProject<Projects.MyBlog_Api>("myblogapi")
