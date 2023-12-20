@@ -35,6 +35,6 @@ public class PostViewModel
     public string Title { get; set; } = "";
 
     [Required]
-    [StringLength(10000, ErrorMessage = "Content is too long.")]
-    public string Content { get; set; } = "";
+    [StringLength(10_000, ErrorMessage = "Content is too long.")]
+    public string Content { get; set; } = "My amazing start of a blog...";
 }

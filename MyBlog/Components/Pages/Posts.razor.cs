@@ -4,7 +4,7 @@ namespace MyBlog.Components.Pages;
 
 public partial class Posts
 {
-    private Post[]? posts;
+    private Post[]? _posts;
 
     [SupplyParameterFromForm]
     public int? PostToDelete { get; set; }
@@ -16,6 +16,6 @@ public partial class Posts
             await Client.DeletePostAsync(PostToDelete.Value);
         }
 
-        posts = await Client.GetPostsAsync();
+        _posts = await Client.GetPostsAsync();
     }
 }

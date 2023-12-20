@@ -1,8 +1,11 @@
 let editor = null;
 const Editor = toastui.Editor;
 
-const initializeEditor = async (selector, initialValue, onInitialized) => {
+const initializeEditor = async (component, selector, initialValue, onInitialized) => {
     disposeEditor();
+
+    const prefersDarkMode = window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches;
 
     const textArea = await waitForElement(selector);
     if (textArea) {
@@ -10,14 +13,20 @@ const initializeEditor = async (selector, initialValue, onInitialized) => {
             el: textArea,
             height: '500px',
             initialEditType: 'markdown',
-            previewStyle: 'vertical'
+            previewStyle: 'vertical',
+            initialValue: initialValue,
+            events: {
+                change: () => {
+                    component.invokeMethodAsync('OnValueChanged', editor.getMarkdown());
+                }
+            },
+            usageStatistics: false,
+            theme: prefersDarkMode ? 'dark' : 'default'
         });
 
-        setValue(initialValue);
-
-        DotNet.invokeMethodAsync('MyBlog', onInitialized, true);
+        component.invokeMethodAsync(onInitialized, true);
     } else {
-        DotNet.invokeMethodAsync('MyBlog', onInitialized, false);
+        component.invokeMethodAsync(onInitialized, false);
     }
 }
 

@@ -9,24 +9,17 @@ public sealed partial class InputTextAreaEditor : IAsyncDisposable
     private readonly string _id = $"input-{Guid.NewGuid().GetHashCode():X}";
     private InitializationState _initializationState = InitializationState.Initializing;
 
-    private string LabelClass => _initializationState switch
+    private string VisibilityClass => _initializationState switch
     {
         InitializationState.Initializing => "visually-hidden",
         _ => ""
-    };
-
-    private string InputClass => _initializationState switch
-    {
-        InitializationState.Initializing => "form-control visually-hidden",
-        InitializationState.Initialized => "form-control",
-        _ => "form-control is-invalid",
     };
 
     [Inject]
     public required IJSRuntime JavaScript { get; set; }
 
     [Inject]
-    public required ILogger<InputTextAreaEditor> Logger { get; set; }
+    public required ILogger<InputTextAreaEditor> Log { get; set; }
 
     [EditorRequired, Parameter]
     public required string Label { get; set; }
@@ -44,9 +37,10 @@ public sealed partial class InputTextAreaEditor : IAsyncDisposable
         if (firstRender)
         {
             await JavaScript.InitializeMarkdownEditorAsync(
-                $"#{_id}", Value, nameof(InitializedAsync));
+                this, $"#{_id}", Value, nameof(InitializedAsync));
 
-            Logger.LogInformation("Element with id='{Id}' initialized", _id);
+            Log.LogInformation("" +
+                "OnAfterRenderAsync: Element with id='{Id}' initialized", _id);
 
             StateHasChanged();
         }
@@ -61,16 +55,25 @@ public sealed partial class InputTextAreaEditor : IAsyncDisposable
                 ? InitializationState.Initialized
                 : InitializationState.Error;
 
-            Logger.LogInformation(
-                "Element with id='{Id}' is: {State}", _id, _initializationState);
-
             StateHasChanged();
         });
     }
 
+    [JSInvokable]
+    public async Task OnValueChanged(string? value)
+    {
+        await InvokeAsync(async () =>
+        {
+            Value = value;
+            await ValueChanged.InvokeAsync(value);
+        });
+    }   
+
     public ValueTask DisposeAsync()
     {
-        return JavaScript.DisposeMarkdownEditorAsync();
+        return _initializationState is InitializationState.Initialized
+            ? JavaScript.DisposeMarkdownEditorAsync()
+            : ValueTask.CompletedTask;
     }
 }
 

@@ -1,5 +1,7 @@
 ﻿@page "/posts"
+@using Microsoft.AspNetCore.Mvc
 @attribute [StreamRendering(true)]
+
 @inject NavigationManager Nav
 @inject BlogApiClient Client
 
@@ -10,7 +12,7 @@
 <form method="post" @formname="blog-post-actions" data-enhance>
     <AntiforgeryToken />
 
-    @if (posts is null)
+    @if (_posts is null)
     {
         <p><em>Loading...</em></p>
     }
@@ -26,14 +28,14 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var p in posts)
+                @foreach (var p in _posts)
                 {
                     <tr>
                         <td>@p.Title</td>
                         <td>@p.Created</td>
                         <td><a href="/post/@p.Id">View</a></td>
                         <td>
-                            <button type="submit" name="@nameof(PostToDelete)" value="@p.Id">Delete</button>
+                            <button type="submit" class="btn btn-sm btn-secondary" name="@nameof(PostToDelete)" value="@p.Id">Delete</button>
                         </td>
                     </tr>
                 }

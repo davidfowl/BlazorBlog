@@ -1,6 +1,9 @@
 ﻿@page "/createpost"
+@rendermode RenderMode.InteractiveServer
 
 @using Microsoft.AspNetCore.Mvc
+
+@attribute [StreamRendering(true)]
 
 @inject BlogApiClient Client
 @inject NavigationManager Nav
