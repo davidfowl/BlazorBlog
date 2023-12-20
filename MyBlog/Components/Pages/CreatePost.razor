@@ -1,11 +1,13 @@
 ﻿@page "/createpost"
+
+@using Microsoft.AspNetCore.Mvc
+
 @inject BlogApiClient Client
 @inject NavigationManager Nav
 
 <h3>Create a Post</h3>
 
-
-<EditForm EditContext="@editContext" FormName="create-post" OnSubmit="@HandleSubmitAsync" Enhance>
+<EditForm EditContext="@_editContext" FormName="create-post" OnSubmit="@HandleSubmitAsync" Enhance>
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div class="form">
@@ -17,15 +19,14 @@
             </div>
 
             <div class="form-group">
-                <label for="content">Content</label>
-                <InputTextArea id="content" class="form-control" @bind-Value="@Post.Content" />
+                <InputTextAreaEditor @bind-Value="@Post.Content" Label="Content" />
                 <ValidationMessage For="@(() => Post.Content)" />
             </div>
         </div>
 
         <div class="form-section">
             <div class="form-buttons">
-                <button class="button button-primary" type="submit">Create Post</button>
+                <button class="btn btn-primary" type="submit">Create Post</button>
             </div>
         </div>
     </div>

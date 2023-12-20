@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
 	<PublishSelfContained>true</PublishSelfContained>
+	<UserSecretsId>3f14d1e9-98b4-433d-bcac-99f66fbb6d8c</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

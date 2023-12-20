@@ -1,8 +1,7 @@
-﻿using Azure.Identity;
-using Azure.Storage.Blobs;
+﻿using Azure.Storage.Blobs;
 using Microsoft.AspNetCore.DataProtection;
 
-public static class Extensions
+public static class HostApplicationBuilderExtensions
 {
     public static void AddStorageBasedDataProtection(this IHostApplicationBuilder builder)
     {

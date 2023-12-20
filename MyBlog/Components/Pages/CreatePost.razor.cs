@@ -6,7 +6,7 @@ namespace MyBlog.Components.Pages;
 
 public partial class CreatePost
 {
-    private EditContext editContext = default!;
+    private EditContext _editContext = default!;
 
     [SupplyParameterFromForm]
     private PostViewModel Post { get; set; } = default!;
@@ -14,12 +14,12 @@ public partial class CreatePost
     protected override void OnInitialized()
     {
         Post ??= new PostViewModel();
-        editContext = new EditContext(Post);
+        _editContext = new EditContext(Post);
     }
 
     private async Task HandleSubmitAsync()
     {
-        if (editContext.Validate())
+        if (_editContext.Validate())
         {
             await Client.CreatePostAsync(Post.Title, Post.Content);
 

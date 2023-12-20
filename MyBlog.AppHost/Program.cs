@@ -13,5 +13,5 @@ var api = builder.AddProject<Projects.MyBlog_Api>("myblogapi")
 
 builder.AddProject<Projects.MyBlog>("myblog")
        .WithReference(api)
-       .WithReference(blobs)       .WithEnvironment("ASPNETCORE_FORWARDEDHEADERS_ENABLED", "true");;
+       .WithReference(blobs)       .WithEnvironment("ASPNETCORE_FORWARDEDHEADERS_ENABLED", "true");
 builder.Build().Run();

@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace MyBlog.Data;
+﻿namespace MyBlog.Data;
 
 // Write an AppDbContext class that inherits from DbContext and implements a model for a blog with posts and comments.
 
