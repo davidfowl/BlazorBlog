@@ -1,16 +1,23 @@
 ﻿@page "/post/{id:int}"
 @attribute [StreamRendering(true)]
+@using Markdig
 @inject BlogApiClient Client
-
-<h3></h3>
 
 @if (Post is null)
 {
-    <p><em>Loading...</em></p>
+    <div class="d-flex align-items-center">
+        <strong>Loading...</strong>
+        <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+    </div>
 }
 else
 {
-    <h1>@Post.Title</h1>
+    <PageTitle>@Post.Title</PageTitle>
+    <h1 class="text-center">@Post.Title</h1>
 
-    <p>@Post.Content</p>
+    var content = Post.Content;
+    var html = Markdown.ToHtml(content);
+    var markup = new MarkupString(html);
+
+    <div>@markup</div>
 }

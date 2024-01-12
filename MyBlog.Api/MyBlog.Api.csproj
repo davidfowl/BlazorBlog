@@ -5,11 +5,12 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>true</InvariantGlobalization>
+    <UserSecretsId>86f58630-405e-4b3e-aa6d-17cb4d1b8419</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-	<PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0-preview.1.23557.2" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
+	<PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0-preview.2.23619.3" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 

@@ -1,0 +1,9 @@
+﻿@if (_initializationState is InitializationState.Initializing)
+{
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+}
+
+<label for="@_id" class="@VisibilityClass">@Label</label>
+<div id="@_id" class="@VisibilityClass"></div>
