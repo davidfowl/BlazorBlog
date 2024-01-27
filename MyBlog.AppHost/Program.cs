@@ -1,7 +1,5 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
-builder.AddAzureProvisioning();
-
 var db = builder.AddPostgresContainer("pg").AddDatabase("db");
 
 var blobs = builder.AddAzureStorage("storage")
